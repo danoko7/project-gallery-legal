@@ -20,13 +20,13 @@
 </head>
 <body>
   <h1>Project Gallery Privacy Policy</h1>
-  <p class="updated">Last updated: September 13, 2026</p>
+  <p class="updated">Last updated: October 19, 2026</p>
 
   <h2>Overview</h2>
   <p>Project Gallery is a field-documentation camera and gallery app. It captures photos and videos onto this device, can stamp timestamp and job metadata onto those files, and organizes media by project folder. This policy describes the data the apps access, store, and — in limited cases — send off the device. Play Store and App Store listings use this same page.</p>
 
   <h2>Platform notes</h2>
-  <p>Android: this policy applies to the Project Gallery app with package name com.danoko.project_gallery.android. Photos and videos are stored under DCIM/ProjectGallery/. Address lookup first uses Android's platform geocoder. Sharing uses Android's share sheet. iOS: an iOS app is not released yet. When it ships, this page will name its bundle ID and note Photos/Files storage and iOS geocoding. Both store listings will keep using this same URL.</p>
+  <p>Android: this policy applies to the Project Gallery app with package name com.danoko.project_gallery.android. Photos and videos are stored under DCIM/ProjectGallery/. Address lookup uses Project Gallery's geocoding service first, and Android's platform geocoder as a fallback. Sharing uses Android's share sheet. iOS: an iOS app is not released yet. When it ships, this page will name its bundle ID and note Photos/Files storage and iOS geocoding. Both store listings will keep using this same URL.</p>
 
   <h2>Data stored on your device</h2>
   <p>Photos, videos, and optional SubRip captions are stored in public device storage under DCIM/ProjectGallery/. That media stays on the device if you uninstall the app and can be seen by other gallery or file apps. Project names, folder names, capture notes, inspector name, overlay preferences, theme, and favorites live in app-private storage on this device. The app does not create an account and does not back up app-private state to cloud backup or device transfer.</p>
@@ -35,16 +35,16 @@
   <p>Camera permission is used to capture photos and videos. Microphone permission is used only for video recording so that recorded clips can include sound. Photo capture still works if you deny microphone access. Video recording is blocked until microphone access is granted.</p>
 
   <h2>Photos and videos</h2>
-  <p>The app reads photos and videos so it can show, search, organize, favorite, move, copy, share, recycle, and restore media it manages under DCIM/ProjectGallery/. Broad photo and video library access is required for that gallery. On Android versions that offer partial access, you can limit the library the app can see. The app does not upload your library to a Project Gallery server.</p>
+  <p>The app reads photos and videos so it can show, search, organize, favorite, move, copy, share, recycle, and restore media it manages under DCIM/ProjectGallery/. Broad photo and video library access is required for that gallery. On Android versions that offer partial access, you can limit the library the app can see. The app does not upload captured photos, videos, or your library to a Project Gallery server. Captured media stays on this device unless you choose to share or export it.</p>
 
   <h2>Location</h2>
-  <p>Location is used only while the Camera screen is visible and a location-dependent output is enabled: visible GPS or address overlay fields, or saving GPS into still-photo EXIF. The app does not use background location. Approximate permission is enough to run the session; precise permission improves coordinate and address quality. Capture still works if you deny location. Mock locations are not written into photo EXIF. When GPS-in-photo is enabled, coordinates are stored inside the JPEG on this device and will travel with that file if you share it.</p>
+  <p>Location is used only while the Camera screen is visible and a location-dependent output is enabled: visible GPS or address overlay fields, or saving GPS into still-photo EXIF. The app does not use background location. Approximate permission is enough to run the session; precise permission improves coordinate and address quality. Capture still works if you deny location. Mock locations are not written into photo EXIF. When GPS-in-photo is enabled, coordinates are stored locally in the JPEG EXIF metadata on this device. A shared photo can carry that EXIF information if the metadata remains in the file.</p>
 
   <h2>Address lookup and data sharing</h2>
-  <p>If you enable the address overlay, the app reverse-geocodes a recent GPS fix while Camera is visible. It first uses Android's platform geocoder, which may send coordinates to Google on your device's network. If this build includes a configured geocoding proxy, a fallback request sends coordinates, language, and result-limit parameters over HTTPS to the app's Cloudflare Worker. The Worker sends the lookup to Geoapify over HTTPS and may retain the coordinate-keyed response in its cache for up to seven days. The app does not send photos, videos, notes, project names, or account identifiers with those requests. Address text is stored on device in an app cache and may be burned into photos or video overlays you enable.</p>
+  <p>If you enable the address overlay, the app reverse-geocodes a recent GPS fix while Camera is visible. Coordinates may be transmitted over HTTPS to Project Gallery's geocoding service at projectgallery-geocoder.danokodev.workers.dev. If that service cannot return a usable address, the app may use Android's platform geocoder as a fallback. The platform geocoder may send coordinates to Google or another geocoding service supplied by the device or platform. The app does not send photos, videos, notes, project names, or account identifiers with those requests. Address text is stored on device in an app cache and may be burned into photos or video overlays you enable.</p>
 
   <h2>Data handling and security</h2>
-  <p>App-private preferences, notes, favorites, and address cache entries are protected by Android's app sandbox and excluded from Android cloud backup and device transfer. Captured media is intentionally stored in public device storage so gallery and file apps can access it. The shipped app-controlled reverse-geocoding path uses HTTPS from the app to the Cloudflare Worker and from the Worker to Geoapify. The Geoapify API credential remains on the Worker and is not included in the app. No storage or transmission method can be guaranteed completely secure.</p>
+  <p>App-private preferences, notes, favorites, and address cache entries are protected by Android's app sandbox and excluded from Android cloud backup and device transfer. Captured media is intentionally stored in public device storage so gallery and file apps can access it. Requests to Project Gallery's geocoding service are sent over HTTPS. No storage or transmission method can be guaranteed completely secure.</p>
 
   <h2>Internet use</h2>
   <p>Network access is used for optional reverse geocoding described above. The app does not include advertising, analytics, crash-reporting, or social SDKs.</p>
@@ -53,10 +53,10 @@
   <p>If you use Android's share sheet, the selected files — including any stamped overlay text and GPS EXIF — are sent to the destination you choose. That sharing is initiated by you and is not an automatic upload by Project Gallery.</p>
 
   <h2>What we do not collect</h2>
-  <p>The Play Store release does not create user accounts, does not show ads, does not use an advertising ID, and does not operate a Project Gallery cloud library. Debug diagnostics exist only in debug builds, stay on the device, and omit coordinates, notes, media names, URIs, and filesystem paths.</p>
+  <p>The Play Store release does not create user accounts, does not collect payment information, does not show ads, does not use an advertising ID, and does not operate a Project Gallery cloud library. Debug diagnostics exist only in debug builds, stay on the device, and omit coordinates, notes, media names, URIs, and filesystem paths.</p>
 
   <h2>Retention and deletion</h2>
-  <p>Media in DCIM/ProjectGallery/ remains until you delete it in this app, another gallery app, or the system Files app. App-private preferences are removed when you uninstall. On-device address cache entries expire after seven days. If the geocoding proxy is used, its coordinate-keyed response cache also expires after no more than seven days and is not tied to an account or used to build a profile. Android's geocoding provider and Geoapify may process or retain request data under their own service policies.</p>
+  <p>Media in DCIM/ProjectGallery/ remains until you delete it in this app, another gallery app, or the system Files app. App-private preferences are removed when you uninstall. On-device address cache entries expire after seven days. When Android's platform geocoder is used, that provider may process or retain request data under its own service policy.</p>
 
   <h2>Children</h2>
   <p>Project Gallery is built for adult field and construction documentation. It is not directed at children.</p>
