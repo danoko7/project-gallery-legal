@@ -20,7 +20,7 @@
 </head>
 <body>
   <h1>Project Gallery Privacy Policy</h1>
-  <p class="updated">Last updated: October 19, 2026</p>
+  <p class="updated">Last updated: November 1, 2026</p>
 
   <h2>Overview</h2>
   <p>Project Gallery is a field-documentation camera and gallery app. It captures photos and videos onto this device, can stamp timestamp and job metadata onto those files, and organizes media by project folder. This policy describes the data the apps access, store, and — in limited cases — send off the device. Play Store and App Store listings use this same page.</p>
@@ -43,11 +43,15 @@
   <h2>Address lookup and data sharing</h2>
   <p>If you enable the address overlay, the app reverse-geocodes a recent GPS fix while Camera is visible. Coordinates may be transmitted over HTTPS to Project Gallery's geocoding service at projectgallery-geocoder.danokodev.workers.dev. If that service cannot return a usable address, the app may use Android's platform geocoder as a fallback. The platform geocoder may send coordinates to Google or another geocoding service supplied by the device or platform. The app does not send photos, videos, notes, project names, or account identifiers with those requests. Address text is stored on device in an app cache and may be burned into photos or video overlays you enable.</p>
 
+  <h2>Internal Testing and access control</h2>
+  <p>Pre-release and Google Play Internal Testing versions may generate a random installation identifier on the device. Project Gallery creates that identifier. It is not an Android ID, Advertising ID, IMEI, serial number, Google account, email address, tester name, or another hardware identifier. The app sends the identifier, app version code, app version name, and platform (Android) over HTTPS to Project Gallery's access-control service at projectgallery-internal-test.danokodev.workers.dev. Project Gallery retains the installation identifier, an authorization status of unknown, enabled, or disabled, the first-seen timestamp, the last-seen timestamp, the app version code, the app version name, and the platform. This information is used only to administer and secure pre-release testing access: to enable or disable an individual test installation, to enforce a minimum supported test version, and to disable testing access globally. Disabling or re-enabling an installation does not require the tester's name or email. These requests are not used for advertising, cross-app tracking, or general usage analytics.</p>
+  <p>The access-control service does not intentionally collect or store tester names, email addresses, precise location, location history, resolved addresses, photos, videos, project names or content, contacts, an Advertising ID, an Android ID, or hardware identifiers. The service runs on Cloudflare. Project Gallery's access registry stores the testing-access records described above. Cloudflare, as the infrastructure provider, processes the HTTPS requests needed to operate the service, which can include ordinary network information required to deliver those requests.</p>
+
   <h2>Data handling and security</h2>
-  <p>App-private preferences, notes, favorites, and address cache entries are protected by Android's app sandbox and excluded from Android cloud backup and device transfer. Captured media is intentionally stored in public device storage so gallery and file apps can access it. Requests to Project Gallery's geocoding service are sent over HTTPS. No storage or transmission method can be guaranteed completely secure.</p>
+  <p>App-private preferences, notes, favorites, and address cache entries are protected by Android's app sandbox and excluded from Android cloud backup and device transfer. Captured media is intentionally stored in public device storage so gallery and file apps can access it. Requests to Project Gallery's geocoding service, and access-control requests from pre-release and Internal Testing builds, are sent over HTTPS. No storage or transmission method can be guaranteed completely secure.</p>
 
   <h2>Internet use</h2>
-  <p>Network access is used for optional reverse geocoding described above. The app does not include advertising, analytics, crash-reporting, or social SDKs.</p>
+  <p>Network access is used for optional reverse geocoding described above. Pre-release and Internal Testing builds may also contact Project Gallery's access-control service, described above, to administer testing access. Those requests are not general usage analytics. The app does not include advertising, analytics, crash-reporting, or social SDKs.</p>
 
   <h2>Sharing from the app</h2>
   <p>If you use Android's share sheet, the selected files — including any stamped overlay text and GPS EXIF — are sent to the destination you choose. That sharing is initiated by you and is not an automatic upload by Project Gallery.</p>
@@ -56,7 +60,7 @@
   <p>The Play Store release does not create user accounts, does not collect payment information, does not show ads, does not use an advertising ID, and does not operate a Project Gallery cloud library. Debug diagnostics exist only in debug builds, stay on the device, and omit coordinates, notes, media names, URIs, and filesystem paths.</p>
 
   <h2>Retention and deletion</h2>
-  <p>Media in DCIM/ProjectGallery/ remains until you delete it in this app, another gallery app, or the system Files app. App-private preferences are removed when you uninstall. On-device address cache entries expire after seven days. When Android's platform geocoder is used, that provider may process or retain request data under its own service policy.</p>
+  <p>Media in DCIM/ProjectGallery/ remains until you delete it in this app, another gallery app, or the system Files app. App-private preferences are removed when you uninstall. On-device address cache entries expire after seven days. When Android's platform geocoder is used, that provider may process or retain request data under its own service policy. Internal-testing access records are retained as needed to administer the testing program, maintain disabled-installation decisions, troubleshoot access, and protect the service, and may be deleted when no longer reasonably needed for those purposes.</p>
 
   <h2>Children</h2>
   <p>Project Gallery is built for adult field and construction documentation. It is not directed at children.</p>
